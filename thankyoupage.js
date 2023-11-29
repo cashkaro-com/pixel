@@ -1,10 +1,10 @@
 function a() {
 
     // Initialize variables
-    var ck_order_id = '';
-    ck_order_id = ck_order_id.replace("#", ""); // Remove '#' from ck_order_id
-    var ck_order_value = '';
-    var ck_discount_code = '';
+    // var ck_order_id = '';
+    // ck_order_id = ck_order_id.replace("#", ""); // Remove '#' from ck_order_id
+    // var ck_order_value = '';
+    // var ck_discount_code = '';
     var ckSurvivalDays = 7;
 
     // Function to retrieve data from local storage with a specific prefix
