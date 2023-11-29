@@ -4,7 +4,7 @@ try {
         //     location.reload()
         // }
         let count = localStorage.getItem('ck_count') ? parseInt(localStorage.getItem('ck_count')) : 0
-        if (!ck_order_id & count != 2) {
+        if (!ck_order_id & count != 3) {
             count += 1
             localStorage.setItem('ck_count', count)
             location.reload()
