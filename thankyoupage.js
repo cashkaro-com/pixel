@@ -47,7 +47,7 @@ function a() {
 
     // Function to perform a postback based on provided data
     function ckPostback(data) {
-        if (data && data.ck_clickid) {
+        if (data && data.ck_clickid && ck_order_id) {
             var url = 'https://offers-cashkaro.affise.com/postback?clickid=' + data.ck_clickid + '&secure=b600d69029bf182f0f822b438a166152&action_id=' + ck_order_id + '&sum=' + ck_order_value + '&status=2&custom_field1=' + ck_order_value + '&custom_field2=' + data.ck_utm_campaign + '&custom_field3=' + ck_discount_code;
             fetch(url)
                 .then(function (response) {
