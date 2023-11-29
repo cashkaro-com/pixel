@@ -1,7 +1,15 @@
-try {   
+try {
     function a() {
-        if(!ck_order_id){
+        // if (!ck_order_id) {
+        //     location.reload()
+        // }
+        let count = localStorage.getItem('ck_count') ? parseInt(localStorage.getItem('ck_count')) : 0
+        if (!ck_order_id & count != 2) {
+            count += 1
+            localStorage.setItem('ck_count', count)
             location.reload()
+        } else {
+            localStorage.removeItem('ck_count')
         }
         var ckSurvivalDays = 7;
         // Function to retrieve data from local storage with a specific prefix
@@ -16,7 +24,7 @@ try {
             }
             return keysAndValues;
         }
-    
+
         // Function to retrieve data from cookies with a specific prefix
         function getCKCookieData(prefix) {
             var cookies = {};
@@ -32,7 +40,7 @@ try {
             }
             return cookies;
         }
-    
+
         // Function to delete data from local storage with a specific prefix
         function deleteCKLocalData(prefix) {
             Object.keys(localStorage).forEach(function (key) {
@@ -41,10 +49,10 @@ try {
                 }
             });
         }
-    
+
         // Function to perform a postback based on provided data
         function ckPostback(data) {
-            console.log(data , data.ck_clickid , ck_order_id)
+            console.log(data, data.ck_clickid, ck_order_id)
             if (data && data.ck_clickid && ck_order_id) {
                 var url = 'https://offers-cashkaro.affise.com/postback?clickid=' + data.ck_clickid + '&secure=' + ck_secure_id + '&action_id=' + ck_order_id + '&sum=' + ck_order_value + '&status=2&custom_field1=' + ck_order_value + '&custom_field2=' + data.ck_utm_campaign + '&custom_field3=' + ck_discount_code;
                 fetch(url)
@@ -57,11 +65,11 @@ try {
                 console.log('CK UTM source : ' + data.ck_utm_source + '\nCK UTM campaign : ' + data.ck_utm_campaign);
             }
         }
-    
+
         // Get data from local storage with a 'ck_' prefix
         var ckLocalData = getCKLocalData('ck_');
-    
-        console.log('ckLocalData ',ckLocalData)
+
+        console.log('ckLocalData ', ckLocalData)
         // Check if local data exists and the timestamp is within a certain range
         if (ckLocalData && ckLocalData.ck_timestamp && (ckLocalData.ck_utm_source === 'cashkaro')) {
             var epochTimestamp = ckLocalData.ck_timestamp;
@@ -77,7 +85,7 @@ try {
             var currentDate = new Date();
             var timeDifference = currentDate - providedDate;
             var daysDifference = timeDifference / (1000 * 86400 * ckSurvivalDays);
-    
+
             // Perform postback if conditions are met
             if (daysDifference <= ckSurvivalDays) {
                 if (!('ck_gclid' in ckLocalData) && !('ck_fbclid' in ckLocalData) && !('ck_igshid' in ckLocalData) && !('ck_gad_source' in ckLocalData) && !('ck_msclkid' in ckLocalData)) {
