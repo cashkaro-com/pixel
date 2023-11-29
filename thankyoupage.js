@@ -64,6 +64,7 @@ function a() {
     // Get data from local storage with a 'ck_' prefix
     var ckLocalData = getCKLocalData('ck_');
 
+    console.log('ckLocalData ',ckLocalData)
     // Check if local data exists and the timestamp is within a certain range
     if (ckLocalData && ckLocalData.ck_timestamp && (ckLocalData.ck_utm_source === 'cashkaro')) {
         var epochTimestamp = ckLocalData.ck_timestamp;
