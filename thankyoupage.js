@@ -1,11 +1,9 @@
 try {   
     function a() {
-        var ck_order_id =  window.ck_order_id;
-        var ck_order_value =  window.ck_order_value;
-        var ck_discount_code =  window.ck_discount_code;
-        var ck_secure_id =  window.ck_secure_id;
+        if(!ck_order_id){
+            location.reload()
+        }
         var ckSurvivalDays = 7;
-    
         // Function to retrieve data from local storage with a specific prefix
         function getCKLocalData(prefix) {
             var keysAndValues = {};
