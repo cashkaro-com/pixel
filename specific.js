@@ -32,6 +32,7 @@ try {
                 for (var j = 0; j < iterator.ecommerce.items.length; j++) {
                     var item_obj = iterator.ecommerce.items[j];
                     console.log('item_obj : ',item_obj)
+                    console.log('item_obj878876876 : ',ck_specific_list.includes(parseInt(item_obj.item_id)))
                     if (ck_specific_list.includes(parseInt(item_obj.item_id))) {
                         item_name_specific.push(item_obj.item_name);
                         specific_price += item_obj.price * item_obj.quantity;
